@@ -1,0 +1,47 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	
+>
+	<Dialog
+		id="openDialog"
+		title="{i18n>Cadastro De Clientes}"
+	>
+		<beginButton>
+			<Button
+				text="{i18n>Salvar}"
+				type="Accept"
+				press="handleSaveBtnPress"
+			/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="{i18n>Cancelar}"
+				type="Reject"
+				press="handleCancelBtnPress"
+			/>
+		</endButton>
+		<f:SimpleForm
+			id="RegisterForm"
+			editable="true"
+		>
+			<f:content>
+				<Label text="{i18n>Nome}"/>
+				<Input
+					value="{Order>/Nome:}"
+				/>
+				<Label text="{i18n>Endereço}"/>
+				<Input
+					value="{Order>/Endereço:}"
+				/>
+
+				<Label text="Telefone"/>
+				<Input
+					value="{Order>/Telefone:}"
+				/>
+
+			</f:content>
+		</f:SimpleForm>
+	</Dialog>
+</c:FragmentDefinition>

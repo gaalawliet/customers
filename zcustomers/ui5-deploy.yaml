@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.6"
+metadata:
+  name: zcustomers
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://vm29.4hub.cloud:52900
+          client: "100"
+        credentials:
+          username: env:XYZ_USER
+          password: env:XYZ_PASSWORD
+        app:
+          name: ZCUSTOMERS
+          description: Cadastro de clientes
+          package: zgpimentel
+          transport: S4HK901904
