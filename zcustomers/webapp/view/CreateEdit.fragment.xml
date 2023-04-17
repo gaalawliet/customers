@@ -5,47 +5,47 @@
 	
 >
 	<Dialog
-		id="openDialog"
-		title="{i18n>Cadastro De Clientes}"
+		id="editDialog"
+		title="{i18n>Editar cliente}"
 	>
 		<beginButton>
 			<Button
 				text="{i18n>Salvar}"
 				type="Accept"
-				press="handleSaveBtnPress"
+				press="handleSaveBtnPressEdit"
 			/>
 		</beginButton>
 		<endButton>
 			<Button
 				text="{i18n>Cancelar}"
 				type="Reject"
-				press="handleCancelBtnPress"
+				press="handleCancelBtnPressEdit"
 			/>
 		</endButton>
 		<f:SimpleForm
-			id="RegisterForm"
+			id="editForm"
 			editable="true"
 		>
 			<f:content>
 				<Label text="{i18n>Nome}"/>
 				<Input 
-				id="nameClient"
-					value="{= !${editClient>/isEdit} ? '' : ${ClientName} }"
-					required="{= ${editClient>/isEdit} ? false : true }"
+				id="nameClientEdit"
+					value="{EditFragmentModel>/Nome}"
+					required="true"
 				/>
 				<Label  text="{i18n>Endereço}"/>
 				<Input
-				id="addressClient"
-				value="{= !${editClient>/isEdit} ? '' : ${ClientAddress} }"
-					required="{= ${editClient>/isEdit} ? false : true }"
+				id="addressClientEdit"
+				value="{EditFragmentModel>/Endereco}"
+				required="true"
 				/>	
 
 				<Label  text="Telefone"/>
 				<MaskInput
-				id="phoneClient"
-				value="{= !${editClient>/isEdit} ? '' : ${ClientPhone} }"
+				id="phoneClientEdit"
+				value="{EditFragmentModel>/Telefone}"
 				mask="(99) 9 9999 9999"
-				required="{= ${editClient>/isEdit} ? false : true }"
+				required="true"
 				/>
 
 			</f:content>

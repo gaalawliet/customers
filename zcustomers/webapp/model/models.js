@@ -1,7 +1,7 @@
 sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/Device"
-], 
+],
     /**
      * provide app-view type models (as in the first "V" in MVVC)
      * 
@@ -18,14 +18,18 @@ sap.ui.define([
                 var oModel = new JSONModel(Device);
                 oModel.setDefaultBindingMode("OneWay");
                 return oModel;
-        },
-        createCustomerModel: function () {
-			var oModel = new JSONModel({                
-				Nome: "",
-				Telefone: "",
-				Endereço: "",  
-			});
-			return oModel;
-		  },
-    };
-});
+            },
+            createEditFragmentModel: function () {
+                var oModel = new JSONModel({
+                    CodigoCliente: "",
+                    Nome: "",
+                    Endereco: "",
+                    Telefone: "",
+                    CreatedOn: "",
+                    CreatedAt: "",
+                    CreatedBy: ""
+                });
+                return oModel;
+            },
+        };
+    });
