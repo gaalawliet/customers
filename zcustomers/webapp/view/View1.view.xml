@@ -1,50 +1,52 @@
-<mvc:View controllerName="zcustomers.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" 
-    displayBlock="true"
-    xmlns="sap.m"
-    xmlns:smartTable="sap.ui.comp.smarttable">
-    <Page id="page" 
-    title="{i18n>title}">
-	<content />
-
-        <smartTable:SmartTable
-				id="st_customers"
-				entitySet="ZRDW_CDS_CUSTOMERS"
-                tableType="ResponsiveTable"
-				header="{i18n>items}"
-				persistencyKey="SmartTableAnalytical_Explored"
-				class="sapUiResponsiveContentPadding"
-				enableAutoBinding="true"
-				initiallyVisibleFields="CodigoCliente,Nome,Endereco,Telefone,Usuario,DataCriacao,HoraCriacao,"
-				showFullScreenButton="true"
-				busyIndicatorDelay="{listView>/delay}"
-				smartFilterId="sfb_monitor"
-			>
-            <Table mode="MultiSelect"/>
-				<smartTable:customToolbar>
-					<OverflowToolbar design="Transparent">
-						<ToolbarSpacer/>
-						<OverflowToolbarButton
-							icon="sap-icon://create-form"
-							text="{i18n>register}"
-							tooltip="{i18n>register}"
-							press="onCreateCustomer"       
-						/>
-						<OverflowToolbarButton
-							icon="sap-icon://request"
-							text="{i18n>update}"
-							tooltip="{i18n>update}"
-							press="onUpdateCustomer"       
-						/>
-                        <OverflowToolbarButton
-							icon="sap-icon://delete"
-							text="{i18n>delete}"
-							tooltip="{i18n>delete}"
-							press="onDeleteCustomer"       
-						/>
-						
-					</OverflowToolbar>
-				</smartTable:customToolbar>
-        </smartTable:SmartTable>
-    </Page>
+<mvc:View
+	controllerName="zcustomers.controller.View1"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+>
+	<Page
+		id="page"
+		title="{i18n>title}"
+	>
+		<content />
+		<smartTable:SmartTable
+			id="st_customers"
+			entitySet="ZRDW_CDS_CUSTOMERS"
+			tableType="ResponsiveTable"
+			header="{i18n>items}"
+			persistencyKey="SmartTableAnalytical_Explored"
+			class="sapUiResponsiveContentPadding"
+			enableAutoBinding="true"
+			initiallyVisibleFields="CodigoCliente,Nome,Endereco,Telefone,Usuario,DataCriacao,HoraCriacao,"
+			showFullScreenButton="true"
+			busyIndicatorDelay="{listView>/delay}"
+			smartFilterId="sfb_monitor"
+		>
+			<Table mode="MultiSelect" />
+			<smartTable:customToolbar>
+				<OverflowToolbar design="Transparent">
+					<ToolbarSpacer />
+					<OverflowToolbarButton
+						icon="sap-icon://create-form"
+						text="{i18n>register}"
+						tooltip="{i18n>register}"
+						press="onCreateCustomer"
+					/>
+					<OverflowToolbarButton
+						icon="sap-icon://request"
+						text="{i18n>update}"
+						tooltip="{i18n>update}"
+						press="onUpdateCustomer"
+					/>
+					<OverflowToolbarButton
+						icon="sap-icon://delete"
+						text="{i18n>delete}"
+						tooltip="{i18n>delete}"
+						press="onDeleteCustomer"
+					/>
+				</OverflowToolbar>
+			</smartTable:customToolbar>
+		</smartTable:SmartTable>
+	</Page>
 </mvc:View>

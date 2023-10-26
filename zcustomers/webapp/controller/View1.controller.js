@@ -15,6 +15,8 @@ sap.ui.define([
       onInit: function () {
 
       },
+
+   
       onCreateCustomer: function () {
         var oView = this.getView();
         if (!this.byId("openDialog")) {
@@ -31,7 +33,8 @@ sap.ui.define([
         }
       },
       handleSaveBtnPress: function (oEvent) {
-        sap.ui.core.BusyIndicator.show(0);
+        debugger;
+        //sap.ui.core.BusyIndicator.show(0);
         var oView = this.getView();
 
         var phone = oView.byId("phoneClient").getValue();
@@ -116,19 +119,19 @@ sap.ui.define([
               MessageToast.show("Telefone não preenchido!");
               sap.ui.core.BusyIndicator.hide();
 
-              break
+              
 
             case (name):
               MessageToast.show("Nome não preenchido!");
               sap.ui.core.BusyIndicator.hide();
 
-              break
+              
 
             case (address):
               MessageToast.show("Endereço não preenchido!");
               sap.ui.core.BusyIndicator.hide();
 
-              break
+              
 
             default:
               var clientFragmentEditData = [
@@ -168,7 +171,7 @@ sap.ui.define([
                   sap.ui.core.BusyIndicator.hide();
                 },
               });
-              break
+
           }
         }
 
@@ -223,6 +226,8 @@ sap.ui.define([
         var oSmartTableTable = oView.byId("st_customers").getTable();
         var oSmartTable = oView.byId("st_customers");
 
+        debugger;
+
         MessageBox.confirm("Deseja realmente excluir os dados do cliente?", {
           title: "Atenção",
           icon: sap.m.MessageBox.Icon.WARNING,
@@ -236,6 +241,8 @@ sap.ui.define([
                   CUSTOMER_COD: SelectedItem.CodigoCliente
                 });
               });
+
+              debugger;
 
               var Payload = {
                 Action: "DELETECUSTOMER",
