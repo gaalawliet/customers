@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/ZRDWP_GPIMENTEL_CUSTOMERS_SRV/",
+        "uri": "/sap/opu/odata/sap/ZRDWP_GPIMENTEL_MONITOR_SRV/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -85,37 +85,54 @@
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
-        "viewType": "XML",
-        "async": true,
-        "viewPath": "zcustomers.view",
-        "controlAggregation": "pages",
-        "controlId": "app",
-        "clearControlAggregation": false
-      },
-      "routes": [
-        {
-          "name": "RouteView1",
-          "pattern": ":?query:",
-          "target": [
-            "TargetView1"
-          ]
-        }
-      ],
-      "targets": {
-        "TargetView1": {
           "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "View1",
-          "viewName": "View1"
+          "async": true,
+          "viewPath": "zcustomers.view",
+          "controlAggregation": "pages",
+          "controlId": "idAppControl",
+          "clearControlAggregation": false
+        },
+        "routes": [
+          {
+            "name": "RouteView1",
+            "pattern": "",
+            "target": [
+              "TargetView1"
+            ]
+          },
+          {
+            "name": "RouteView2",
+            "pattern": "View2",
+            "target": [
+              "TargetView1",
+              "TargetView2"
+            ]
+          }
+        ],
+        "targets": {
+          "TargetView1": {
+            "viewType": "XML",
+            "viewId": "View1",
+            "viewName": "View1",
+            "transition": "slide",
+            "controlAggregation": "masterPages",
+            "viewlevel": 0
+          },
+          "TargetView2": {
+            "viewType": "XML",
+            "viewId": "View2",
+            "viewName": "View2",
+            "transition": "slide",
+            "controlAggregation": "detailPages",
+            "viewlevel": 1
+          }
         }
+      },
+      "rootView": {
+        "viewName": "zcustomers.view.App",
+        "type": "XML",
+        "async": true,
+        "id": "App"
       }
-    },
-    "rootView": {
-      "viewName": "zcustomers.view.App",
-      "type": "XML",
-      "async": true,
-      "id": "App"
     }
   }
-}

@@ -6,7 +6,7 @@
 >
 	<Dialog
 		id="openDialog"
-		title="{i18n>Cadastro De Clientes}"
+		title="{i18n>Criar solicitação de transporte}"
 	>
 		<beginButton>
 			<Button
@@ -27,25 +27,15 @@
 			editable="true"
 		>
 			<f:content>
-				<Label text="{i18n>Nome}"/>
+				<Label text="{i18n>Cliente}"/>
 				<Input 
 				id="nameClient"
 					value="{= !${editClient>/isEdit} ? '' : ${ClientName} }"
 					required="{= ${editClient>/isEdit} ? false : true }"
-				/>
-				<Label  text="{i18n>Endereço}"/>
-				<Input
-				id="addressClient"
-				value="{= !${editClient>/isEdit} ? '' : ${ClientAddress} }"
-					required="{= ${editClient>/isEdit} ? false : true }"
-				/>	
+					placeholder="Ex:1234657891"
+					showValueHelp="true"
+					valueHelpRequest="onValueHelpRequest"
 
-				<Label  text="Telefone"/>
-				<MaskInput
-				id="phoneClient"
-				value="{= !${editClient>/isEdit} ? '' : ${ClientPhone} }"
-				mask="(99) 9 9999 9999"
-				required="{= ${editClient>/isEdit} ? false : true }"
 				/>
 
 			</f:content>

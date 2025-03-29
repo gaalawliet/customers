@@ -1,52 +1,67 @@
 <mvc:View
-	controllerName="zcustomers.controller.View1"
-	xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true"
-	xmlns="sap.m"
-	xmlns:smartTable="sap.ui.comp.smarttable"
->
-	<Page
-		id="page"
-		title="{i18n>title}"
-	>
-		<content />
-		<smartTable:SmartTable
-			id="st_customers"
-			entitySet="ZRDW_CDS_CUSTOMERS"
-			tableType="ResponsiveTable"
-			header="{i18n>items}"
-			persistencyKey="SmartTableAnalytical_Explored"
-			class="sapUiResponsiveContentPadding"
-			enableAutoBinding="true"
-			initiallyVisibleFields="CodigoCliente,Nome,Endereco,Telefone,Usuario,DataCriacao,HoraCriacao,"
-			showFullScreenButton="true"
-			busyIndicatorDelay="{listView>/delay}"
-			smartFilterId="sfb_monitor"
-		>
-			<Table mode="MultiSelect" />
-			<smartTable:customToolbar>
-				<OverflowToolbar design="Transparent">
-					<ToolbarSpacer />
-					<OverflowToolbarButton
-						icon="sap-icon://create-form"
-						text="{i18n>register}"
-						tooltip="{i18n>register}"
-						press="onCreateCustomer"
-					/>
-					<OverflowToolbarButton
-						icon="sap-icon://request"
-						text="{i18n>update}"
-						tooltip="{i18n>update}"
-						press="onUpdateCustomer"
-					/>
-					<OverflowToolbarButton
-						icon="sap-icon://delete"
-						text="{i18n>delete}"
-						tooltip="{i18n>delete}"
-						press="onDeleteCustomer"
-					/>
-				</OverflowToolbar>
-			</smartTable:customToolbar>
-		</smartTable:SmartTable>
-	</Page>
+    controllerName="zcustomers.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    displayBlock="true">
+    <Page
+        id="page"
+        title="{i18n>title}">
+        <content>
+            <!-- SmartFilterBar -->
+            <smartFilterBar:SmartFilterBar
+                id="idSmartFilterBar"
+                entitySet="ZRDWGP_TRANS_REQUEST_HEADER"
+                liveMode="true">
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration
+                        id="_IDGenControlConfiguration"
+                        key="TransportRequest"
+                        label="Solicitação de Transporte"
+                        mandatory="false" />
+                </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+
+            <!-- Toolbar acima da lista -->
+            <Toolbar id="_IDGenToolbar">
+                <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                <Button id="_IDGenButton"
+                    icon="sap-icon://create-form"
+                    text="{i18n>register}"
+                    tooltip="{i18n>register}"
+                    press="onCreateCustomer" />
+                <Button id="_IDGenButton1"
+                    icon="sap-icon://request"
+                    text="{i18n>update}"
+                    tooltip="{i18n>update}"
+                    press="onUpdateCustomer" />
+                <Button id="_IDGenButton2"
+                    icon="sap-icon://delete"
+                    text="{i18n>delete}"
+                    tooltip="{i18n>delete}"
+                    press="onDeleteCustomer" />
+                <Button id="_IDGenButton3"
+                    icon="sap-icon://detail-more"
+                    text="Detalhes"
+                    tooltip="Detalhes"
+                    press="onNavToSecPage" />
+            </Toolbar>
+
+            <!-- Lista vinculada ao entitySet -->
+            <List
+                id="list"
+                items="{
+                    path: '/ZRDWGP_TRANS_REQUEST_HEADER',
+                    templateShareable: false
+                }">
+                <StandardListItem id="_IDGenStandardListItem1"
+                    title="{TransportRequest}"
+                    description="{CustomerDescription}"
+                    info="{Status}"
+                    infoState="Success"
+                    type="Active"
+                    press="onNavToSecPage" />
+            </List>
+        </content>
+    </Page>
 </mvc:View>

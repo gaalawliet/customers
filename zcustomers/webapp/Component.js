@@ -3,10 +3,11 @@
  */
 
 sap.ui.define([
-        "sap/ui/core/UIComponent",
-        "sap/ui/Device",
-        "zcustomers/model/models"
-    ],
+    "sap/ui/core/UIComponent",
+    "sap/ui/Device",
+    "zcustomers/model/models",
+    "sap/ui/model/json/JSONModel"
+],
     function (UIComponent, Device, models) {
         "use strict";
 
@@ -28,11 +29,13 @@ sap.ui.define([
                 // enable routing
                 this.getRouter().initialize();
 
-                
+
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
 
                 this.setModel(models.createEditFragmentModel(), "EditFragmentModel");
+
+                this.setModel(new sap.ui.model.json.JSONModel({ layout: "OneColumn"}), "layoutMod");
 
             }
         });

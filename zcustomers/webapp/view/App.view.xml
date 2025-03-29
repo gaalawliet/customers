@@ -1,7 +1,10 @@
 <mvc:View controllerName="zcustomers.controller.App"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <App id="app">
-    </App>
+    xmlns="sap.m" xmlns:f="sap.f"
+    height="100%">    
+    <SplitApp id="idAppControl" >
+
+    </SplitApp>
+
 </mvc:View>

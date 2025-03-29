@@ -38,7 +38,7 @@ server:
       configuration:
         mountPath: /
         services:
-          - urlPath: /sap/opu/odata/sap/ZRDWP_GPIMENTEL_CUSTOMERS_SRV
+          - urlPath: /sap/opu/odata/sap/ZRDWP_GPIMENTEL_MONITOR_SRV
             metadataPath: ./webapp/localService/metadata.xml
             mockdataPath: ./webapp/localService/data
             generateMockData: true
