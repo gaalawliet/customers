@@ -29,14 +29,7 @@
   },
   "sap.ui": {
     "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
+    "icons": {},
     "deviceTypes": {
       "desktop": true,
       "tablet": true,
@@ -51,7 +44,6 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.f": {},
-        "sap.suite.ui.generic.template": {},
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
         "sap.ui.table": {},
@@ -84,55 +76,50 @@
     },
     "routing": {
       "config": {
-        "routerClass": "sap.m.routing.Router",
-          "viewType": "XML",
-          "async": true,
-          "viewPath": "zcustomers.view",
-          "controlAggregation": "pages",
-          "controlId": "idAppControl",
-          "clearControlAggregation": false
-        },
-        "routes": [
-          {
-            "name": "RouteView1",
-            "pattern": "",
-            "target": [
-              "TargetView1"
-            ]
-          },
-          {
-            "name": "RouteView2",
-            "pattern": "View2",
-            "target": [
-              "TargetView1",
-              "TargetView2"
-            ]
-          }
-        ],
-        "targets": {
-          "TargetView1": {
-            "viewType": "XML",
-            "viewId": "View1",
-            "viewName": "View1",
-            "transition": "slide",
-            "controlAggregation": "masterPages",
-            "viewlevel": 0
-          },
-          "TargetView2": {
-            "viewType": "XML",
-            "viewId": "View2",
-            "viewName": "View2",
-            "transition": "slide",
-            "controlAggregation": "detailPages",
-            "viewlevel": 1
-          }
-        }
-      },
-      "rootView": {
-        "viewName": "zcustomers.view.App",
-        "type": "XML",
+        "routerClass": "sap.f.routing.Router",
+        "viewType": "XML",
         "async": true,
-        "id": "App"
+        "viewPath": "zcustomers.view",
+        "controlId": "idFlexibleColumnLayout",
+        "controlAggregation": "midColumnPages",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": "",
+          "target": ["TargetView1"]
+        },
+        {
+          "name": "RouteView2",
+          "pattern": "View2-{TransportRequest}",
+          "target": ["TargetView1", "TargetView2"]
+        }
+      ],
+      "targets": {
+        "TargetView1": {
+          "viewType": "XML",
+          "viewId": "View1",
+          "viewName": "View1",
+          "transition": "slide",
+          "controlAggregation": "beginColumnPages",
+          "viewlevel": 0
+        },
+        "TargetView2": {
+          "viewType": "XML",
+          "viewId": "View2",
+          "viewName": "View2",
+          "transition": "slide",
+          "controlAggregation": "midColumnPages",
+          "viewlevel": 1
+        }
       }
+    },
+    "rootView": {
+      "viewName": "zcustomers.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
     }
   }
+}

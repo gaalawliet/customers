@@ -3,8 +3,13 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m" xmlns:f="sap.f"
     height="100%">    
-    <SplitApp id="idAppControl" >
 
-    </SplitApp>
+    <f:FlexibleColumnLayout id="idFlexibleColumnLayout"
+    layout="{layoutMod>/layout}"
+
+    backgroundDesign="Solid">
+
+</f:FlexibleColumnLayout>
+
 
 </mvc:View>

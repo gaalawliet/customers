@@ -1,56 +1,120 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/UIComponent",
+    "sap/m/PDFViewer"
+], function (Controller, JSONModel, UIComponent) {
     "use strict";
 
     return Controller.extend("zcustomers.controller.View2", {
         onInit: function () {
-            // Dados fictícios para exibição
-            var aMockData = [
-                {
-                    TransportRequest: "TR001",
-                    Delivery: "DEL001",
-                    DeliveryItem: "001",
-                    Material: "MAT001",
-                    MaterialDescription: "Material Teste 1",
-                    MaterialQuantity: 10,
-                    GrossWeight: 5.5,
-                    UnitMeasure: "KG"
-                },
-                {
-                    TransportRequest: "TR002",
-                    Delivery: "DEL002",
-                    DeliveryItem: "002",
-                    Material: "MAT002",
-                    MaterialDescription: "Material Teste 2",
-                    MaterialQuantity: 20,
-                    GrossWeight: 10.0,
-                    UnitMeasure: "KG"
+
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.getRoute("RouteView2").attachPatternMatched(this._onObjectMatched, this);
+
+               },
+
+               _onObjectMatched: function (oEvent) {
+
+                console.log(oEvent);
+
+                debugger;
+
+                var oLayoutModel = this.getView().getModel("layoutMod");
+                oLayoutModel.setProperty("/layout", "TwoColumnsMidExpanded");
+                var sTransport = oEvent.getParameter("arguments").TransportRequest;
+                console.log(sTransport);
+                var oView = this.getView();
+                var sPath = oView.getModel().createKey("/ZRDWGP_TRANS_REQUEST_HEADER", { TransportRequest: sTransport });
+                oView.bindElement({
+                    path: sPath,
+                    parameters: {
+                      expand: "to_items"
+                    },
+                    events: {
+                      change: this.onBindingChange.bind(this),
+                      dataRequested: function () {
+                        oView.setBusy(true);
+                      },
+                      dataReceived: function (oData) {
+                        oView.setBusy(false);
+                      },
+                      error: function (oError) {
+                        oView.setBusy(false);
+                        console.error("Erro ao carregar dados:", oError);
+                      },
+                    },
+                  });
+            },
+
+            onBindingChange: function () {
+                ;
+                var oView = this.getView();
+                //Captura o elemento que foi realizado o Binding
+                var oElementBinding = oView.getElementBinding();
+         
+                var oRouter = UIComponent.getRouterFor(this); //this = view corrente
+         
+                //Se não existir um elemento (registro) válido, exibe a view ObjectNotFound
+                if (!oElementBinding.getBoundContext()) {
+                  // Se não existir o registro e não estamos na operação de Delete, realiza redirecionamento
+                  //if (!this._bDelete) {
+                  //  oRouter.getTargets().display("TargetObjectNotFound");
+                  //  return;
+                  //}
+                  return;
+                } else {
+                  //Clonamos o registro atual
+                  //this._oProduto = Object.assign(
+                  //  {},
+                  oElementBinding.getBoundContext().getObject();
+                  //);
                 }
-            ];
+              },
 
-            // Cria o modelo JSON com os dados fictícios
-            var oMockModel = new JSONModel(aMockData);
+              onCloseDetailPress: function () {
+                var oLayoutModel = this.getView().getModel("layoutMod");
+                oLayoutModel.setProperty("/layout", "OneColumn");
+         
+                this.getOwnerComponent().getRouter().navTo("RouteView1", {}, true);
+         
+              },
 
-            // Define o modelo na View2
-            this.getView().setModel(oMockModel, "ItemsModel");
-        },
+              onPrintTransportRequest: function () {
 
-        onRefresh: function () {
-            // Lógica para atualizar os dados (simulação)
-            var oModel = this.getView().getModel("ItemsModel");
-            oModel.refresh();
-        },
+                debugger;
+                var sTransport = this.getView().getBindingContext().getProperty("TransportRequest");
+         
+                this._PreviewSmartform("ZRRRFBP-FORM_TRANSPORT_REQUEST", { TRANSPORT_REQUEST_ID: sTransport, });
+              },
 
-        onExport: function () {
-            // Lógica para exportar os dados (simulação)
-            console.log("Exportar dados da tabela");
-        },
-
-        onBack: function () {
-            // Navega de volta para a View1
-            this.getOwnerComponent().getRouter().navTo("RouteView1");
-        }
+              _PreviewSmartform: function (
+                FormId,
+                Params,
+                Title = "PDF",
+                FileName = "Teste",
+                GetPDF = "X"
+              ) {
+                var Viewer = new PDFViewer();
+         
+                this.getView().addDependent(Viewer);
+                let oModel = this.getView().getModel();
+         
+                let sPath = oModel.createKey("/PrintLabelSet", {
+                  FormId: FormId,
+                  Params: JSON.stringify(Params),
+                  FileName: FileName,
+                  GetPdf: GetPDF,
+                });
+         
+                let sSource = this.getView().getModel().sServiceUrl + sPath + "/$value";
+         
+                Viewer.setShowDownloadButton(false);
+                Viewer.setSource(sSource);
+         
+                Viewer.setTitle(Title);
+                Viewer.open();
+              },
+         
     });
 });

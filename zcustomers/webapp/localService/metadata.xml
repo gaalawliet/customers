@@ -1,108 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
-        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="CodeList"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
-    </edmx:Reference>
-    <edmx:DataServices m:DataServiceVersion="2.0">
-        <Schema Namespace="ZRDWP_GPIMENTEL_MONITOR_SRV" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
-            <EntityType Name="JsonComm" sap:content-version="1">
-                <Key>
-                    <PropertyRef Name="Action"/>
-                </Key>
-                <Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
-                <Property Name="Payload" Type="Edm.String" Nullable="false" sap:unicode="false"/>
-            </EntityType>
-            <EntityType Name="ZRDWGP_TRANS_REQUEST_HEADERType" sap:label="Transport Request Header" sap:content-version="1">
-                <Key>
-                    <PropertyRef Name="TransportRequest"/>
-                </Key>
-                <Property Name="TransportRequest" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Solicitação de Transporte" sap:quickinfo="ID Para Solicitação de Transporte"/>
-                <Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cliente" sap:quickinfo="Nº cliente"/>
-                <Property Name="CustomerDescription" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase" sap:label="Descrição" sap:quickinfo="Nome"/>
-                <Property Name="CustomerAddress" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Endereço" sap:quickinfo="Nº endereço"/>
-                <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Pais" sap:quickinfo="Chave do país/da região"/>
-                <Property Name="City" Type="Edm.String" MaxLength="35" sap:label="Cidade"/>
-                <Property Name="District" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Bairro" sap:quickinfo="Região (estado, província, município)"/>
-                <Property Name="Street" Type="Edm.String" MaxLength="35" sap:label="Rua" sap:quickinfo="Rua e nº"/>
-                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Centro"/>
-                <Property Name="Plate" Type="Edm.String" MaxLength="7" sap:display-format="UpperCase" sap:label="Placa" sap:quickinfo="Placa do veículo"/>
-                <Property Name="PlannedDepartureDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Saida planejada data" sap:quickinfo="Data de Saída Planejada"/>
-                <Property Name="PlannedDepartureTime" Type="Edm.Time" Precision="0" sap:label="Saida planejada hora" sap:quickinfo="Horário de Saída Planejada"/>
-                <Property Name="ExitDateMade" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Saida realizada data" sap:quickinfo="Data de Saída Realizada"/>
-                <Property Name="ExitTimeMade" Type="Edm.Time" Precision="0" sap:label="Saida realizada hora" sap:quickinfo="Horário de Saída Realizado"/>
-                <Property Name="ShippingCompany" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Codigo Transportadora" sap:quickinfo="Nº conta do fornecedor"/>
-                <Property Name="ShippingCompanyName" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase" sap:label="Transportadora"/>
-                <Property Name="DriverName" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Motorista" sap:quickinfo="Nome do Motorista"/>
-                <Property Name="VehicleType" Type="Edm.String" MaxLength="60" sap:label="Veiculo" sap:quickinfo="Texto breve para valores fixos"/>
-                <Property Name="Status" Type="Edm.String" MaxLength="60" sap:label="Status" sap:quickinfo="Texto breve para valores fixos"/>
-                <Property Name="TollValue" Type="Edm.Decimal" Precision="14" Scale="3" sap:label="Pedagio" sap:quickinfo="Valor do Pedágio"/>
-                <Property Name="CreatedAtDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data de criação" sap:quickinfo="Data de Criação"/>
-                <Property Name="CreatedAtHour" Type="Edm.Time" Precision="0" sap:label="Hora de criação" sap:quickinfo="Horário de Criação"/>
-                <Property Name="Username" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Usuario" sap:quickinfo="Nome do usuário"/>
-                <NavigationProperty Name="to_items" Relationship="ZRDWP_GPIMENTEL_MONITOR_SRV.assoc_CCB1A9A2787E78DBBDFF219F25187D95" FromRole="FromRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95" ToRole="ToRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
-            </EntityType>
-            <EntityType Name="ZRDWGP_TRANS_REQUEST_ITEMSType" sap:label="Transport Request Items" sap:content-version="1">
-                <Key>
-                    <PropertyRef Name="TransportRequest"/>
-                    <PropertyRef Name="Delivery"/>
-                    <PropertyRef Name="DeliveryItem"/>
-                </Key>
-                <Property Name="TransportRequest" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="ID Para Sol. Transp" sap:quickinfo="ID Para Solicitação de Transporte"/>
-                <Property Name="Delivery" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Documento SD" sap:quickinfo="Número do documento de vendas e distribuição"/>
-                <Property Name="DeliveryItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item de remessa"/>
-                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Nº do material"/>
-                <Property Name="MaterialDescription" Type="Edm.String" MaxLength="40" sap:label="Texto breve material" sap:quickinfo="Texto breve de material"/>
-                <Property Name="MaterialQuantity" Type="Edm.Decimal" Precision="13" Scale="0" sap:label="Quantidade Sol. Mat" sap:quickinfo="Quantidade Solicitada Material"/>
-                <Property Name="GrossWeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Peso bruto"/>
-                <Property Name="UnitMeasure" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Campo de caracteres do comprimento 10" sap:heading=""/>
-            </EntityType>
-            <Association Name="assoc_CCB1A9A2787E78DBBDFF219F25187D95" sap:content-version="1">
-                <End Type="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_TRANS_REQUEST_HEADERType" Multiplicity="1" Role="FromRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
-                <End Type="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_TRANS_REQUEST_ITEMSType" Multiplicity="*" Role="ToRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
-            </Association>
-            <EntityContainer Name="ZRDWP_GPIMENTEL_MONITOR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
-                <EntitySet Name="JsonCommSet" EntityType="ZRDWP_GPIMENTEL_MONITOR_SRV.JsonComm" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
-                <EntitySet Name="ZRDWGP_TRANS_REQUEST_HEADER" EntityType="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_TRANS_REQUEST_HEADERType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
-                <EntitySet Name="ZRDWGP_TRANS_REQUEST_ITEMS" EntityType="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_TRANS_REQUEST_ITEMSType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
-                <AssociationSet Name="assoc_CCB1A9A2787E78DBBDFF219F25187D95" Association="ZRDWP_GPIMENTEL_MONITOR_SRV.assoc_CCB1A9A2787E78DBBDFF219F25187D95" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="ZRDWGP_TRANS_REQUEST_HEADER" Role="FromRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
-                    <End EntitySet="ZRDWGP_TRANS_REQUEST_ITEMS" Role="ToRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
-                </AssociationSet>
-            </EntityContainer>
-            <Annotations Target="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWP_GPIMENTEL_MONITOR_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
-            </Annotations>
-            <atom:link rel="self" href="http://vm29.4hub.cloud:52900/sap/opu/odata/sap/ZRDWP_GPIMENTEL_MONITOR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
-            <atom:link rel="latest-version" href="http://vm29.4hub.cloud:52900/sap/opu/odata/sap/ZRDWP_GPIMENTEL_MONITOR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
-        </Schema>
-    </edmx:DataServices>
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+<edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="CodeList"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://vm29.4hub.cloud:52900/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+</edmx:Reference>
+<edmx:DataServices m:DataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZRDWP_GPIMENTEL_MONITOR_SRV" xml:lang="pt" sap:schema-version="1">
+<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+<EntityType Name="JsonComm" sap:content-version="1">
+<Key>
+<PropertyRef Name="Action"/>
+</Key>
+<Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Payload" Type="Edm.String" Nullable="false" sap:unicode="false"/>
+</EntityType>
+<EntityType Name="ZRDWGP_CUSTOMERS_NUMBERType" sap:label="CDS - Cadastro de clientes" sap:content-version="1">
+<Key>
+<PropertyRef Name="customer"/>
+</Key>
+<Property Name="customer" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Cliente" sap:quickinfo="Nº cliente"/>
+<Property Name="customerName" Type="Edm.String" MaxLength="35" sap:label="Nome" sap:quickinfo="Nome 1"/>
+</EntityType>
+<EntityType Name="ZRDWGP_TRANS_REQUEST_HEADERType" sap:label="Transport Request Header" sap:content-version="1">
+<Key>
+<PropertyRef Name="TransportRequest"/>
+</Key>
+<Property Name="TransportRequest" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Solicitação de Transporte" sap:quickinfo="ID Para Solicitação de Transporte"/>
+<Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cliente" sap:quickinfo="Nº cliente"/>
+<Property Name="CustomerDescription" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase" sap:label="Descrição" sap:quickinfo="Nome"/>
+<Property Name="CustomerAddress" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Endereço" sap:quickinfo="Nº endereço"/>
+<Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Pais" sap:quickinfo="Chave do país/da região"/>
+<Property Name="City" Type="Edm.String" MaxLength="35" sap:label="Cidade"/>
+<Property Name="District" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Bairro" sap:quickinfo="Região (estado, província, município)"/>
+<Property Name="Street" Type="Edm.String" MaxLength="35" sap:label="Rua" sap:quickinfo="Rua e nº"/>
+<Property Name="Plant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Centro"/>
+<Property Name="Plate" Type="Edm.String" MaxLength="7" sap:display-format="UpperCase" sap:label="Placa" sap:quickinfo="Placa do veículo"/>
+<Property Name="PlannedDepartureDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Saida planejada data" sap:quickinfo="Data de Saída Planejada"/>
+<Property Name="PlannedDepartureTime" Type="Edm.Time" Precision="0" sap:label="Saida planejada hora" sap:quickinfo="Horário de Saída Planejada"/>
+<Property Name="ExitDateMade" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Saida realizada data" sap:quickinfo="Data de Saída Realizada"/>
+<Property Name="ExitTimeMade" Type="Edm.Time" Precision="0" sap:label="Saida realizada hora" sap:quickinfo="Horário de Saída Realizado"/>
+<Property Name="ShippingCompany" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Codigo Transportadora" sap:quickinfo="Nº conta do fornecedor"/>
+<Property Name="ShippingCompanyName" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase" sap:label="Transportadora"/>
+<Property Name="DriverName" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Motorista" sap:quickinfo="Nome do Motorista"/>
+<Property Name="VehicleType" Type="Edm.String" MaxLength="60" sap:label="Veiculo" sap:quickinfo="Texto breve para valores fixos"/>
+<Property Name="Status" Type="Edm.String" MaxLength="60" sap:label="Status" sap:quickinfo="Texto breve para valores fixos"/>
+<Property Name="TollValue" Type="Edm.Decimal" Precision="14" Scale="3" sap:label="Pedagio" sap:quickinfo="Valor do Pedágio"/>
+<Property Name="CreatedAtDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data de criação" sap:quickinfo="Data de Criação"/>
+<Property Name="CreatedAtHour" Type="Edm.Time" Precision="0" sap:label="Hora de criação" sap:quickinfo="Horário de Criação"/>
+<Property Name="Username" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Usuario" sap:quickinfo="Nome do usuário"/>
+<NavigationProperty Name="to_items" Relationship="ZRDWP_GPIMENTEL_MONITOR_SRV.assoc_CCB1A9A2787E78DBBDFF219F25187D95" FromRole="FromRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95" ToRole="ToRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
+</EntityType>
+<EntityType Name="ZRDWGP_TRANS_REQUEST_ITEMSType" sap:label="Transport Request Items" sap:content-version="1">
+<Key>
+<PropertyRef Name="TransportRequest"/>
+<PropertyRef Name="Delivery"/>
+<PropertyRef Name="DeliveryItem"/>
+</Key>
+<Property Name="TransportRequest" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="ID Para Sol. Transp" sap:quickinfo="ID Para Solicitação de Transporte"/>
+<Property Name="Delivery" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Documento SD" sap:quickinfo="Número do documento de vendas e distribuição"/>
+<Property Name="DeliveryItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item de remessa"/>
+<Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Nº do material"/>
+<Property Name="MaterialDescription" Type="Edm.String" MaxLength="40" sap:label="Texto breve material" sap:quickinfo="Texto breve de material"/>
+<Property Name="MaterialQuantity" Type="Edm.Decimal" Precision="13" Scale="0" sap:label="Quantidade Sol. Mat" sap:quickinfo="Quantidade Solicitada Material"/>
+<Property Name="GrossWeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Peso bruto"/>
+<Property Name="UnitMeasure" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Campo de caracteres do comprimento 10" sap:heading=""/>
+</EntityType>
+<Association Name="assoc_CCB1A9A2787E78DBBDFF219F25187D95" sap:content-version="1">
+<End Type="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_TRANS_REQUEST_HEADERType" Multiplicity="1" Role="FromRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
+<End Type="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_TRANS_REQUEST_ITEMSType" Multiplicity="*" Role="ToRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
+</Association>
+<EntityContainer Name="ZRDWP_GPIMENTEL_MONITOR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+<EntitySet Name="JsonCommSet" EntityType="ZRDWP_GPIMENTEL_MONITOR_SRV.JsonComm" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="ZRDWGP_CUSTOMERS_NUMBER" EntityType="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_CUSTOMERS_NUMBERType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+<EntitySet Name="ZRDWGP_TRANS_REQUEST_HEADER" EntityType="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_TRANS_REQUEST_HEADERType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+<EntitySet Name="ZRDWGP_TRANS_REQUEST_ITEMS" EntityType="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWGP_TRANS_REQUEST_ITEMSType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+<AssociationSet Name="assoc_CCB1A9A2787E78DBBDFF219F25187D95" Association="ZRDWP_GPIMENTEL_MONITOR_SRV.assoc_CCB1A9A2787E78DBBDFF219F25187D95" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="ZRDWGP_TRANS_REQUEST_HEADER" Role="FromRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
+<End EntitySet="ZRDWGP_TRANS_REQUEST_ITEMS" Role="ToRole_assoc_CCB1A9A2787E78DBBDFF219F25187D95"/>
+</AssociationSet>
+</EntityContainer>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZRDWP_GPIMENTEL_MONITOR_SRV.ZRDWP_GPIMENTEL_MONITOR_SRV_Entities">
+<Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+</Annotations>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://vm29.4hub.cloud:52900/sap/opu/odata/SAP/ZRDWP_GPIMENTEL_MONITOR_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://vm29.4hub.cloud:52900/sap/opu/odata/SAP/ZRDWP_GPIMENTEL_MONITOR_SRV/$metadata"/>
+</Schema>
+</edmx:DataServices>
 </edmx:Edmx>
