@@ -3,7 +3,7 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/UIComponent",
     "sap/m/PDFViewer"
-], function (Controller, JSONModel, UIComponent) {
+], function (Controller, JSONModel, UIComponent, PDFViewer) {
     "use strict";
 
     return Controller.extend("zcustomers.controller.View2", {
@@ -85,7 +85,7 @@ sap.ui.define([
                 debugger;
                 var sTransport = this.getView().getBindingContext().getProperty("TransportRequest");
          
-                this._PreviewSmartform("ZRRRFBP-FORM_TRANSPORT_REQUEST", { TRANSPORT_REQUEST_ID: sTransport, });
+                this._PreviewSmartform("ZGPFBP-FORM_TRANSPORT_REQUEST", { TRANSPORT_REQUEST: sTransport, });
               },
 
               _PreviewSmartform: function (

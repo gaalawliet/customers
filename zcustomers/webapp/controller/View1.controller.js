@@ -63,9 +63,11 @@ sap.ui.define([
       }
 
       var payload = {
-        Action: "REGISTERCUSTOMER",
-        Payload: JSON.stringify([{ Name: clientName }])
+        Action: "CREATEREQUEST",
+        Payload: JSON.stringify([{ Customer: clientName }])
       };
+
+      debugger;
 
       var oModel = oView.getModel();
       sap.ui.core.BusyIndicator.show(0);
@@ -73,6 +75,7 @@ sap.ui.define([
       oModel.create("/JsonCommSet", payload, {
         success: function () {
           MessageToast.show("Cliente registrado com sucesso");
+          sap.ui.core.BusyIndicator.hide();
           oModel.refresh();
           oView.byId("nameClient").setValue("");
           this.handleCancelBtnPress();
@@ -166,42 +169,53 @@ sap.ui.define([
     },
 
     onDeleteCustomer: function () {
-      debugger;
       var oView = this.getView();
-      var oSmartTable = oView.byId("st_customers").getTable();
-      var CustomerData = oSmartTable._aSelectedPaths.map(path => ({
-        TRANSPORT_REQUEST: oSmartTable.getModel().getProperty(path).TransportRequest
+      var oSmartTable = oView.byId("st_customers"); // Obtém a SmartTable
+      var oTable = oSmartTable.getTable(); // Obtém a tabela interna
+      var CustomerData = oTable._aSelectedPaths.map(path => ({
+          TRANSPORT_REQUEST: oTable.getModel().getProperty(path).TransportRequest
       }));
-
+  
       if (!CustomerData.length) {
-        MessageBox.error("Nenhuma linha selecionada.");
-        return;
+          MessageBox.error("Nenhuma linha selecionada.");
+          return;
       }
-
+  
       MessageBox.confirm("Deseja realmente excluir os dados da solicitação de transporte?", {
-        title: "Atenção",
-        icon: MessageBox.Icon.WARNING,
-        onClose: function (oAction) {
-          if (oAction === MessageBox.Action.OK) {
-            var payload = { Action: "DELETEREQUEST", Payload: JSON.stringify(CustomerData) };
-            sap.ui.core.BusyIndicator.hide();
+          title: "Atenção",
+          icon: MessageBox.Icon.WARNING,
+          onClose: function (oAction) {
+              if (oAction === MessageBox.Action.OK) {
+                  var payload = { Action: "DELETEREQUEST", Payload: JSON.stringify(CustomerData) };
+  
+                  sap.ui.core.BusyIndicator.show(0); // Mostra o indicador de carregamento
+  
+                  oView.getModel().create("/JsonCommSet", payload, {
+                      success: function () {
+                          MessageToast.show("Solicitação excluída com sucesso!");
+                          sap.ui.core.BusyIndicator.hide();
+  
+                          // Atualiza o binding da tabela
+                          oTable.getBinding("items").refresh();
 
-            oView.getModel().create("/JsonCommSet", payload, {
-              success: function () {
-                MessageToast.show("Solicitação excluida com sucesso!");
-                oSmartTable.rebindTable();
-              },
-              error: function (oError) {
-                MessageToast.show(JSON.parse(oError.responseText).error.message.value);
-              },
-              complete: function () {
-                sap.ui.core.BusyIndicator.hide();
+                          // Fecha a aba de detalhes
+                        var oLayoutModel = oView.getModel("layoutMod");
+                        oLayoutModel.setProperty("/layout", "OneColumn");
+                        oView.getOwnerComponent().getRouter().navTo("RouteView1", {}, true);
+
+                      },
+                      error: function (oError) {
+                          sap.ui.core.BusyIndicator.hide();
+                          MessageToast.show(JSON.parse(oError.responseText).error.message.value);
+                      },
+                      complete: function () {
+                          sap.ui.core.BusyIndicator.hide();
+                      }
+                  });
               }
-            });
           }
-        }
       });
-    },
+  },
 
     onSmartFilterBarFilterChange: function(oEvent) {
       oEvent.getSource().search();

@@ -60,12 +60,7 @@
 						tooltip="{i18n>register}"
 						press="onCreateCustomer"
 					/>
-					<OverflowToolbarButton
-						icon="sap-icon://request"
-						text="{i18n>update}"
-						tooltip="{i18n>update}"
-						press="onUpdateCustomer"
-					/>
+
 					<OverflowToolbarButton
 						icon="sap-icon://delete"
 						text="{i18n>delete}"
